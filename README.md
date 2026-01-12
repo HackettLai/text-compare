@@ -21,6 +21,10 @@ A minimal, client-side web app for visually comparing two blocks of text using C
 - Uses Mergely for diff/merge visualization
 - No backend — runs entirely in the browser
 
+## Demo 🎬
+
+[Live Demo](https://text-compare.hackettlai.com)
+
 ## 🚀 Quick start
 
 1. Clone the repository:
