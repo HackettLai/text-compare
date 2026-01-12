@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Text Compare Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, interactive-widget=resizes-content" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta property="og:title" content="Text Compare Online" />
+    <meta name="description" content="Spot text differences quickly and easily with this handy tool. It highlights contrasts between two documents, shows you exactly where they occur, and lets you combine the varying parts with a click." />
+    <meta name="og:description" content="Spot text differences quickly and easily with this handy tool. It highlights contrasts between two documents, shows you exactly where they occur, and lets you combine the varying parts with a click." />
+    <meta property="og:description" content="Spot text differences quickly and easily with this handy tool. It highlights contrasts between two documents, shows you exactly where they occur, and lets you combine the varying parts with a click." />
+    <meta name="keywords" content="Text Compare, Text Comparison, Online Text Comparison, Online Text Difference, Text Comparison Tool, Code Difference Comparison, Content Difference Comparison" />
+    <meta name="og:image" content="/assets/og-image.jpg" />
+    <meta property="og:image" content="/assets/og-image.jpg" />
+    <meta name="url" content="https://text-compare.hackettlai.com" />
+    <meta name="og:url" content="https://text-compare.hackettlai.com" />
+    <meta property="og:url" content="https://text-compare.hackettlai.com" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1f1f1f" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Ban -->
+    <!-- <script type="text/javascript" src="./js/console-ban.js"></script>
+    <script>
+      ConsoleBan.init({
+        debug: true,
+        debugTime: 1,
+        redirect: 'https://access-denied.hackettlai.com',
+      });
+    </script> -->
+
+    <!-- Requires jQuery -->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+
+    <!-- Requires CodeMirror -->
+    <script type="text/javascript" src="./js/codemirror.min.js"></script>
+    <script type="text/javascript" src="./js/searchcursor.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/codemirror.min.css" />
+
+    <!-- Requires Mergely -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mergely/5.0.0/mergely.js"></script> -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mergely/5.0.0/mergely.css" /> -->
+    <script type="text/javascript" src="./js/mergely.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/mergely.css" /> 
+    <link rel="stylesheet" href="sytle.css" />
+
+    <!-- Scrollbar -->
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 6px;
+        border-radius: 40px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h2 class="tool-name">Text Compare Online</h2>
+      <div class="button-group">
+        <div>
+          <p>Jump to</p>
+          <button id="next">Next</button>
+          <button id="prev">Previous</button>
+        </div>
+        <div>
+          <p>Combine this to</p>
+          <button id="mergeCurrentL">Left</button>
+          <button id="mergeCurrentR">Right</button>
+        </div>
+        <div>
+          <div>
+            <p>Merge to</p>
+            <button id="mergeL">Left</button>
+            <button id="mergeR">Right</button>
+          </div>
+          <p>Clear</p>
+          <button id="clearL">Left</button>
+          <button id="clearR">Right</button>
+        </div>
+      </div>
+      <div class="sectionTitle">
+        <p>Original Text</p>
+        <p>Compare Text</p>
+      </div>
+
+      <div class="mergely-full-screen" style="position: unset">
+        <div class="mergely-resizer">
+          <div id="mergely"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p id="version">Built Version 1.1.4</p>
+      <img class="footer-image" src="assets/footer-logo.png" />
+      <p>
+        <a href="https://tool.hackettlai.com" target="blank">Hackett.Lai</a> @
+        <span id="thisYear" class="footer"></span>
+      </p>
+    </footer>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>Changes Log</h2>
+        <table class="modal-table">
+          <tr>
+            <td>v1.1.4</td>
+            <td>
+              <p>2024/06/07</p>
+              <ol>
+                <li>Code enhancement</li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td>v1.1.3</td>
+            <td>
+              <p>2024/05/13</p>
+              <ol>
+                <li>Added Changes Log Modal opened by clicking on the version number on the footer</li>
+                <li>Added favicon</li>
+                <li>Web Application Supported</li>
+              </ol>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="js/year.js"></script>
+    <script type="text/javascript" src="js/changelog.js"></script>
+  </body>
+  <script>
+    var left = ``;
+
+    var right = ``;
+
+    $(document).ready(function () {
+      var mergely = $('#mergely');
+
+      mergely.mergely({
+        wrap_lines: true,
+        width: 'auto',
+        height: 'auto',
+        autoresize: true,
+        sidebar: true, //Whether to show sidebars, set to false to improve performance for large documents
+        ignorews: false, //Whether to ignore space comparisons
+        license: 'lgpl',
+        cmsettings: {
+          readOnly: false, //false displays the merge arrow and runs the two sides to merge.
+        },
+        lhs: function (setValue) {
+          setValue(left);
+        },
+        rhs: function (setValue) {
+          setValue(right);
+        },
+      });
+
+      // Assigning a value
+      // mergely.mergely('lhs', 'value');// value is what to assign
+
+      //Get the left content
+      // var leftValue = mergely.mergely('get', 'lhs');
+
+      //Get the right content
+      // var rightValue = $("#mergely").mergely('get', 'rhs');
+
+      $('#next').bind('click', function () {
+        mergely.mergely('scrollToDiff', 'next');
+      });
+
+      $('#prev').bind('click', function () {
+        mergely.mergely('scrollToDiff', 'prev');
+      });
+
+      $('#clearL').bind('click', function () {
+        mergely.mergely('clear', 'lhs');
+      });
+
+      $('#clearR').bind('click', function () {
+        mergely.mergely('clear', 'rhs');
+      });
+
+      $('#mergeL').bind('click', function () {
+        mergely.mergely('merge', 'lhs');
+      });
+
+      $('#mergeR').bind('click', function () {
+        mergely.mergely('merge', 'rhs');
+      });
+
+      $('#mergeCurrentL').bind('click', function () {
+        mergely.mergely('mergeCurrentChange', 'lhs');
+      });
+
+      $('#mergeCurrentR').bind('click', function () {
+        mergely.mergely('mergeCurrentChange', 'rhs');
+      });
+    });
+  </script>
+</html>
